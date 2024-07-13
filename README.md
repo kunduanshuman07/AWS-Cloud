@@ -5,7 +5,7 @@ Copyright @Anshuman Kundu
 
 # Table of contents
 
-- **Chapter I: AWS Cloud Practitoner**
+- **Chapter I : AWS Cloud Practitoner**
 
   - [Networking Terminologies](#networking-terminologies)
   - [Protocol](#protocol)
@@ -13,9 +13,9 @@ Copyright @Anshuman Kundu
   - [PORT](#port)
 
 
-## AWS Cloud Practitioner
+**Chapter I : AWS Cloud Practitioner**
 
-#### Networking Terminologies:
+# Networking Terminologies:
 
 1. Network is a set of 2 or more computers connected to each other for sharing resources.
 2. The connection between the computers can be made using a cabel, telephone lines, radiowaves, satellites, etc.
@@ -27,7 +27,7 @@ Copyright @Anshuman Kundu
 
 This is exactly how communication happens between computers in a network.
 
-###### Protocol
+# Protocol
 
 1. A set of rules or standards which defines a language for the communication between computers in a network.
 2. Most common used protocols are **TCP (Transmission Control Protocol)** & **UDP (User Datagram Protocol)**.
@@ -40,10 +40,10 @@ Consider the exmaple above. In that exmaple when the 1st computer sends the 10 c
 
 But UDP is not safe for sensitive data which needs to be correctly delivered. There comes **Transmission Control Protocol** where before starting to send the data a prior connection is established between the sender and the recipient. After the connection is built, the sender sends the 1st sequence data to the reciever. Once its recieved, the reciever sends an acknowledgement back to the sender. The sender only after recieving the acknowledgement continues sending the other data in the sequence.
 
-###### IP address
+# IP address
 
 A 32 bit integer ocatves which looks like 0-255.0-255.0-255.0-255 where every octave can contain any number from 0-255, uniquely identifies the computer and helps connect your computer in any network. When data is sent from the 1st computer, the IP address of the 2nd computer helps the ISP to find out the machine matching with the address and directs your data to that specific machine.
 
-###### PORT
+# PORT
 
 A 16 bit integer ranging from 0-65525 which acts as the endpoint of the gate to the specific application to reach in a specific machine. So basically you being the 2nd computer is asking some data from the 1st computer over the internet. The data being sent to you will find out your machine via IP address but there are lots of applications running on a single machine OS, the data is needed by you sitting on one of the applications in the machine. So, the PORT number will decide which application data should be delivered to.
