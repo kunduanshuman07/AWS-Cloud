@@ -11,9 +11,7 @@ Copyright @Anshuman Kundu
   - [Protocol](#protocol)
   - [IP Address](#ip-address)
   - [PORT](#port)
-
-
-**Chapter I : AWS Cloud Practitioner**
+  - [Client Server Architecture](#client-server-architecture)
 
 # Networking Terminologies:
 
@@ -47,3 +45,40 @@ A 32 bit integer ocatves which looks like 0-255.0-255.0-255.0-255 where every oc
 # PORT
 
 A 16 bit integer ranging from 0-65525 which acts as the endpoint of the gate to the specific application to reach in a specific machine. So basically you being the 2nd computer is asking some data from the 1st computer over the internet. The data being sent to you will find out your machine via IP address but there are lots of applications running on a single machine OS, the data is needed by you sitting on one of the applications in the machine. So, the PORT number will decide which application data should be delivered to.
+
+# Client Server Architecture
+
+Client is the computer requesting some data(request) and Server is the computer serving the data (response). 
+
+Consider one scenario below:
+
+1. Server Setup:
+
+Three computers, each with its own IP address, are connected to the switch. The switch is a device which learns the MAC addresses of these computers and which ports they are connected to by the incoming request frames/ip packets from the client computer.
+Each computer here will called a server.
+
+1. Client Request:
+
+Your computer wants to request data from one of the servers. Your computer sends an IP packet to the router if the server is on a different network, or directly to the switch if it's on the same network.
+
+3. Router's Role:
+
+If the server is on a different network, the router will determine the best route for the packet and forward it to the correct network.
+
+4. Switch's Role:
+
+The switch receives the packet and looks at its MAC address table.
+If the destination MAC address is in the table, the switch forwards the frame to the correct port.
+If the destination MAC address is not in the table, the switch floods the frame to all ports (except the incoming port) until it learns the correct port.
+
+5. ARP Operation:
+
+If your computer knows the server's IP address but not its MAC address, it sends an ARP request to the local network.
+The server responds with its MAC address.
+Your computer and the switch then use this MAC address to direct future frames to the server.
+
+6. Server Response:
+
+The server processes the request and sends a response.
+The response is directed to your computer's MAC address.
+The switch forwards the frame to your computer's port based on its MAC address table.
