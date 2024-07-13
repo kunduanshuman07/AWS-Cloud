@@ -12,6 +12,10 @@ Copyright @Anshuman Kundu
   - [IP Address](#ip-address)
   - [PORT](#port)
   - [Client Server Architecture](#client-server-architecture)
+  - [Classic Data Centers](#classic-data-centers)
+  - [Virtualization](#virtualization)
+  - [Cloud Computing](#cloud-computing)
+  - [Cloud Computing Deployment Models - Public/Private/Hybrid/Community](#cloud-computing-deployment-models---publicprivatehybridcommunity)
 
 # Networking Terminologies:
 
@@ -57,7 +61,7 @@ Consider one scenario below:
 Three computers, each with its own IP address, are connected to the switch. The switch is a device which learns the MAC addresses of these computers and which ports they are connected to by the incoming request frames/ip packets from the client computer.
 Each computer here will called a server.
 
-1. Client Request:
+2. Client Request:
 
 Your computer wants to request data from one of the servers. Your computer sends an IP packet to the router if the server is on a different network, or directly to the switch if it's on the same network.
 
@@ -82,3 +86,106 @@ Your computer and the switch then use this MAC address to direct future frames t
 The server processes the request and sends a response.
 The response is directed to your computer's MAC address.
 The switch forwards the frame to your computer's port based on its MAC address table.
+
+# Classic Data Centers
+
+Staring an IT Business requires a Physical IT infrastructure. This infra will contain hardwares which will decide your computational power, databases which will store data for you and network entities to decide your networking capabilities. This physical infrastructure defining compute, storage and network is called a Data Center. Then you will run Operating systems (computers) and applications to serve to users on top of the OS eventually using the physical infrastructure abilities.
+
+## Problems with classic data centers:
+
+1. Upfront cose to establish the physical infrastructure.
+2. Cost for power, maintenance, cooling, etc.
+3. Disaster recovery.
+4. Security and Survillance.
+5. Scalability
+6. Upgrades
+7. Hardware Replacements
+
+# Virtualization 
+
+Let suppose we have built a physical system which only contains the hardware and the operating system. Now instead of running a single machine, we created virtual machines which will have the desired OS and desired applications can be run on it and at the same time serveral othe virtual machines can also be created and used be several other users at the same time. These machines will use the single physical system of rescources instead of creating the complete package for every single user.
+
+## Key properties:
+
+1. Isolation: Every machine is isolated from one another.
+2. Partitioning: Machines are partitioned with there own set of OS and requirements.
+3. Provisioning and Migrating will not be an issue because you are not involved in hardware level things. You just need to care about the OS and the application you make and use in the VM.
+4. Encapsulation of all the things you do in a single isolated place.
+5. No upfront cost and paying for only what you want.
+
+# Cloud Computing
+
+A collection of computing resources which can be accessed via the internet and provided to the users on demand.
+
+## Need of Cloud Computing
+
+1. Cost effective
+2. Scalable
+3. Elastic
+4. High availabilty
+5. Security
+6. Flexibility
+
+# Cloud Computing Deployment Models - Public/Private/Hybrid/Community
+
+## Public Cloud
+
+**Definition**:
+Public clouds are cloud environments owned and operated by third-party cloud service providers, which deliver computing resources like servers and storage over the internet.
+
+**Characteristics**:
+Scalability: Resources can be scaled up or down quickly to meet demand.
+Cost-Effective: Users only pay for the resources they use.
+Maintenance-Free: The cloud provider manages and maintains the infrastructure.
+Accessibility: Resources are available over the internet, making it accessible from anywhere.
+
+**Examples**:
+Amazon Web Services (AWS)
+Microsoft Azure
+Google Cloud Platform (GCP)
+
+## Private Cloud
+
+**Definition**:
+Private clouds are cloud environments dedicated to a single organization. They can be physically located on the company’s on-site datacenter or hosted by a third-party service provider.
+
+**Characteristics**:
+Security: Provides enhanced security and privacy as resources are not shared with other organizations.
+Customization: Can be tailored to the specific needs of the organization.
+Control: The organization has complete control over the infrastructure and data.
+Compliance: Easier to meet regulatory and compliance requirements.
+
+**Examples**:
+VMware Cloud
+OpenStack
+
+## Hybrid Cloud
+
+**Definition**:
+Hybrid clouds combine public and private clouds, allowing data and applications to be shared between them. This provides businesses with greater flexibility and more deployment options.
+
+**Characteristics**:
+Flexibility: Can run applications and store data where it makes the most sense.
+Cost Optimization: Sensitive workloads can be kept on private clouds, while less-critical resources can be run on public clouds.
+Scalability: Can use public cloud resources to handle bursts of traffic.
+Integration: Requires sophisticated technology to integrate both cloud environments seamlessly.
+
+**Examples**:
+IBM Hybrid Cloud
+AWS Outposts
+
+## Community Cloud
+
+**Definition**:
+Community clouds are cloud environments shared by several organizations with common concerns (e.g., security, compliance, jurisdiction).
+
+**Characteristics**:
+Collaboration: Facilitates collaboration among organizations with similar needs.
+Cost Sharing: Costs are spread across the organizations, making it more cost-effective than a private cloud.
+Compliance: Easier to comply with industry-specific regulations.
+Managed by Third Party or Organizations: Can be managed by the participating organizations or by a third-party provider.
+
+**Examples**:
+Government clouds for different departments
+Healthcare clouds for various healthcare providers
+
