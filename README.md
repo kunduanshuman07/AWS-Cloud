@@ -16,6 +16,17 @@ Copyright @Anshuman Kundu
   - [Virtualization](#virtualization)
   - [Cloud Computing](#cloud-computing)
   - [Cloud Computing Deployment Models - Public/Private/Hybrid/Community](#cloud-computing-deployment-models---publicprivatehybridcommunity)
+    - [Public Cloud](#public-cloud)
+    - [Private Cloud](#private-cloud)
+    - [Hybrid Cloud](#hybrid-cloud)
+    - [Community Cloud](#community-cloud)
+  - [Cloud Computing Service Models - IaaS/PaaS/SaaS](#cloud-computing-service-models---iaaspaassaas)
+    - [IaaS](#iaas---infrastructure-as-a-service)
+    - [PaaS](#paas---platform-as-a-service)
+    - [SaaS](#saas---software-as-a-service)
+  - [AWS Regions](#aws-regions)
+    - [How to choose AWS Regions?](#how-to-choose-an-aws-region)
+  - [AWS Availability Zones](#aws-availability-zones-az)
 
 # Networking Terminologies:
 
@@ -189,3 +200,61 @@ Managed by Third Party or Organizations: Can be managed by the participating org
 Government clouds for different departments
 Healthcare clouds for various healthcare providers
 
+# Cloud Computing Service Models - IaaS/PaaS/SaaS
+
+**Components**:
+1. Networking
+2. Storage
+3. Servers
+4. Virtualization
+5. O/S
+6. Middlewares
+7. Runtime
+8. Data 
+9. Application
+
+## On premise Infrastructure
+
+Let us take an example of buying a car. You are responsible for everything associated with the car, where to store the car, the fuel and its capacity, its maintenance, etc. Similarly on an On premise infra you have to manage everything and take care of all the components listed above.
+
+## IaaS - Infrastructure as a Service
+
+If you visit Goa and want a car for 7-8 hours, then instead of buying it you just rent the car and pay for what and how much you use and maitain the car. Therefore you are using the car as a infrastructure and not really care about how is it built and who does it belong to. Similarly in IT IaaS you are responsible for everything except the hardware i.e Networking, Storage, Servers, Virtualization.
+**Example: Virtual Machines**
+
+## PaaS - Platform as a Service
+
+If you prefer not to manage a car at all, you can book a cab service for pick-up and drop-off. You use the car as a platform and don't worry about the car's maintenance. Similarly in IT PaaS you are responsible for the Application and the Data and not the platform for developing the application.
+**Example: AWS Elastic Beanstalk**
+
+## SaaS - Software as a Service
+
+If you donot care about anything related to the transport and you only care about reaching a certain place you just take a public transport.
+Therefore you are using the transport as a Service. Similarly in IT SaaS you are responsible for using the software and dont care about how and where is it built.
+**Example: Gmail**
+
+# AWS Regions
+
+Region is a geographically large area which contain a cluster of Data Centers. There are a variety of regions where AWS has put their data centers.
+**Example: us-east-1, eu-west-3, etc.**
+
+**Most of the AWS services are Region scoped (But their are global services as well) i.e they run within the region and if we want to run the same services in another region, it will entirely different and new.**
+
+## How to choose an AWS Region?
+
+*If you want to run a new application in AWS, in which region you should do it?*
+It depends on below parameters:
+
+1. **Compliance** : Data can never leave a region without explicit permissions i.e if you are storing French people data in France Region and the same data is required in Asia region then both French and Asian Governments will come in picture and provide necessary permissions only if its not going to effect anything and it's okay. Therefore legalities come in picture before choosing any AWS Region.
+
+2. **Proximity** : If most of your application users are in America and you deploy your application in Australia region then users from America will have increased latency. Therefore you should choose your region close to your users.
+
+3. **Available Services** : Not all regions contain all AWS services. Therefore choose regions where your application's services are available.
+
+4. **Prices** : It varies according to regions. Therefore check your service price before choosing regions.
+
+# AWS Availability Zones (AZ)
+
+AZ's are phycially large and discrete locations within regions containing one or more data centers. Ther are designed to avoide service failure during disasters. Every AZ in a region are very far with each other to avoid calamatic failure but are connected with very low latency and high badwidth.
+
+**A region can have minimum of 3 and maximum of 6 AZ's**.
