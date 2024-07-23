@@ -1,4 +1,4 @@
-******# AWS-Cloud
+# AWS-Cloud
 Copyright @Anshuman Kundu
 
 ## Table of Content:
