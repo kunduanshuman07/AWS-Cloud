@@ -1,4 +1,4 @@
-# AWS-Cloud
+******# AWS-Cloud
 Copyright @Anshuman Kundu
 
 ## Table of Content:
@@ -27,6 +27,12 @@ Copyright @Anshuman Kundu
   - [AWS Regions](#aws-regions)
     - [How to choose AWS Regions?](#how-to-choose-an-aws-region)
   - [AWS Availability Zones](#aws-availability-zones-az)
+  - [IAM : Identity and Access management](#iam--identity-and-access-management)
+    - [IAM - Policies](#iam---policies)
+    - [IAM - MFA](#iam---mfa)
+    - [IAM - Roles](#iam---roles)
+    - [IAM - Security Tools](#iam---security-tools)
+  - [AWS Access keys, CLI and SDK](#aws-access-keys-cli-and-sdk)
 
 # Networking Terminologies:
 
@@ -258,3 +264,87 @@ It depends on below parameters:
 AZ's are phycially large and discrete locations within regions containing one or more data centers. Ther are designed to avoide service failure during disasters. Every AZ in a region are very far with each other to avoid calamatic failure but are connected with very low latency and high badwidth.
 
 **A region can have minimum of 3 and maximum of 6 AZ's**.
+
+# IAM : Identity and Access management
+
+IAM is a global service. When we created the AWS account, all our credentials belongs to the root user. But if we want different users within the same organization to use that account's services , we should not expose root user credentials rather we should create groups and put users on those groups.
+
+**Important points**:
+
+1. *Every group that you create will have its own set of permissions and every user inside that group will abide by those persmissions.*
+2. *Groups can only contain users and not other groups i.e groups cannot be nested.*
+3. *Users does not necessary need to belong to a particular group.*
+4. *A single user can belong to multiple groups.*
+5. *Users or groups can be assigned JSON documents called policies.*
+6. *Policies define the permissions for them i.e what services they can use and upto what extent (what all operations they can perform using allowed services).*
+
+## IAM - Policies
+
+**IAM Policy inheritance**
+
+Let suppose there is a group developers with 2 users A and B with Policy x attached to it. There is a second group clients with users C and D with policy y attached to it. There is a third group testers with users B and C with a Policy z attached to it.
+
+Summary of users, groups and policies:
+| User | Group | Policy |
+|------|-------|--------|
+| A | developers | x |
+| B | developers, testers | x, z |
+| C | clients, testers | y, z |
+| D | testers | y |
+
+*We can see that user B and C being in two different and one common groups inherited the policies from other groups as well.*
+
+**IAM Policy structure**
+
+JSON format
+
+```js
+  {
+    "Version": "2021-10-17", // This is the policy language version which always includes 2021-10-17
+    "Id": "S3-Account-Permissions", // This is the unique id associated to the policy (optional)
+    "Statement": [ // Statements consists of the below parameters
+      {
+        "Sid": 1, // Statement id (optional)
+        "Effect": "Allow" // It can be Allow or Deny depending upon whether you want to give the access of refrain it
+        "Principal":"arn:aws:user:19785754567876", // The account, user, role you want the policy to apply
+        "Action": [ // List of actions on which the policy allows or denies
+          "s3: GetObject",
+          "s3: PutObject
+        ],
+        "Resource": [ // List of resources on which the policy allows or denies
+          "S3::bucket:arn..."
+        ]
+      }
+    ]
+
+  }
+
+```
+## IAM - MFA
+
+**Policy Password**
+
+You can give own set of rules for creating passwords of a policy, role, user, group, etc. which provides additional security level.
+
+**MFA: Multi Factor Authentication**
+
+Your password + security token provided by a device you own combines to form a MFA. It creates a high level security for your AWS account. Although somebody hacks your password, he will not be able to get inside the account because MFA asks for the device token which you have configured and this token changes every other second. Therefore this adds another level highly secure AWS system.
+
+Token provider example: ***Google Authenticator***
+
+## IAM - Roles
+
+Let suppose we created an EC2 instance and when we started it, it may want to do some inital things such as to read some file, etc. To do so we attach the service with an IAM role which has perimissions for actions the services attached to it can perform. Therefore the EC2 instance and the IAM role attached to it act as a single entity i.e on behalf of you the services can work by searching the required permissions from the attached IAM role instead of asking persmission from you everytime.
+
+## IAM - Security Tools
+
+1. IAM Credential Report : This generates a report with all your account's users with their credentials.
+2. IAM Access Advisor: This provides a report with all users service permissions and last time those services were accessed by the specific user.
+
+# AWS Access keys, CLI and SDK
+
+You can access all the services of AWS using AWS Management console, CLI or Software Development Kit(SDK).
+AWS Management console involves password + MFA, CLI and SDK uses access keys to secure your AWS account.
+CLI is a cloud line interface which used access keys and MSI CLI installer to be set up in your local for accessing AWS services wheras SDK's are software application embedded in your application which uses programming languages to access your AWS account, you can access AWS services from both.
+
+
