@@ -33,6 +33,10 @@ Copyright @Anshuman Kundu
     - [IAM - Roles](#iam---roles)
     - [IAM - Security Tools](#iam---security-tools)
   - [AWS Access keys, CLI and SDK](#aws-access-keys-cli-and-sdk)
+  - [AWS EC2](#aws-ec2)
+    - [Launching an EC2 instance](#launching-an-ec2-instance)
+    - [EC2 Instance Types](#ec2-instance-types)
+    - [Security Groups](#security-groups)
 
 # Networking Terminologies:
 
@@ -347,4 +351,95 @@ You can access all the services of AWS using AWS Management console, CLI or Soft
 AWS Management console involves password + MFA, CLI and SDK uses access keys to secure your AWS account.
 CLI is a cloud line interface which used access keys and MSI CLI installer to be set up in your local for accessing AWS services wheras SDK's are software application embedded in your application which uses programming languages to access your AWS account, you can access AWS services from both.
 
+# AWS EC2
 
+EC2 stands for Elastic Compute Cloud which provides Infrastructure as a Service (IaaS)
+
+**What does EC2 provide?**
+
+1. Provides Vritual Machines (EC2 instances)
+2. Provides storage options (EBS)
+3. Provides scalability options (ASG)
+4. Provides load balancing option (ELB)
+
+**EC2 User Data**
+
+This defines the bootstrap commands you write in a script which runs everytime the instance starts. Commands can be for installing softwares, installing updates, etc.
+
+## Launching an EC2 instance
+
+1. React to ec2
+2. Click on launch instance
+3. Give name, tags to your instance
+4. Choose Base Image i.e operating system
+5. Choose instance type which decides no. of CPUs, ram and storage basically your compute power
+6. Choose key pair for login to the instance
+7. Configure network settings such as SSH traffic, HTTP traffic, etc so that we can connect to the instance from anywhere
+8. Set up storage amount 
+9. Inside the additional details section find out user data and write your bootstrap scripts to run everytime your instance starts
+    For basic website creation using ec2 write the below script
+    ```js
+      #!/bin/bash
+      #Use this for your user data (from top to bottom)
+      #install httpd
+      yum update -y
+      yum install -y httpd
+      systemctl start httpd
+      systemctl enable httpd
+      echo "<h1>Hello world from $(hostname -f)</h1>" > /var/www/html/index.html
+    ```
+10. Review the summary and click on launch instance
+
+
+## EC2 Instance Types
+
+There are different types of EC2 instances for different purposes, some common and most used are discussed below.
+
+**Naming Convention of instance types**
+
+***m5.2xlarge***
+
+m: instance class
+5: version
+2xlarge: size of the instance (bigger the size, bigger the compute power)
+
+**AWS Instance Type - General Purpose**
+-> used for server and code extensive tasks
+
+**AWS Instance Type - Compute Optimized**
+-> used for compute extensive tasks which requires high performace processors
+
+**AWS Instance Type - Memory Optimized**
+-> used for memory extensive tasks which requires to load large data sets into memory
+
+**AWS Instance Type - Storage Optimized**
+-> used for storage extensive tasks which requires to store and operate on huge data
+
+## Security Groups
+
+1. SGs are Virtual firewalls for your ec2 instance which control inbound (which IPs can connect to your instance) and outbound (which IPs your instance can connect to) traffic. By default all inbound traffic is restricted and all outbound traffic is allowed.
+2. They are stateful this means when you allow an inbound traffic from specific IP and port then outbound traffic to that Ip and port is automatically allowed.
+3. Each SG can have multiple inbound and outbound rules which can allow specific IP, ports and protocols.
+4. Each EC2 instance can be associated to multiple security groups and each security group can be associated to multiple EC2 instances.
+5. If there is a connection timed error on clicking a url hosted on aws ec2 then it is the security group firewall which is not allowing yout to connect to the instance.
+
+**Classic Ports to know**
+
+|PORT|Usage|
+|----|-----|
+|22|Secure Shell (SSH) log into a linux instance|
+|21|FTP File Transfer Protocol|
+|22|SFTP (Secure File Transfer Protocol using SSH)|
+|80|Access unsecured websites (HTTP)|
+|443|Access secured websites (HTTPS)|
+|3389|RDTP - Remote Desktop Protocol (Log into a Window instance)|
+
+## EC2 Instance Purchasing Options
+
+1. On-Demand Instances : short workload, predictable pricing, pay be second
+2. Reserved ( 1 & 3 years ) : you reserve the instance for either 1 year or 3 years and pay for the complete amount upfront. (Discounts will apply accordingly)
+3. Savings (1 & 3 years) : you buy a ec2 instance for either 1 or 3 year and pay for complete amount upfront with discounts but after 3 years you will be billed as per On demand choice which is pay as u go.
+4. Sport instances : It is like you bid for a ec2 instance and buy it but as soon as someone bids a higher amount you will lose your instance. Therefore it's very less reliable.
+5. Dedicated Hosts : You will be buy a entire server at AWS and place your ec2 instance on it.
+6. Dedicated Instances : You will buy a entire hardware at AWS and no body else will share that hardware with you.
+7. Capacity Reservations : You will reserve an entire capacity in a AZ for some duration.
