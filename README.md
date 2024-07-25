@@ -37,6 +37,11 @@ Copyright @Anshuman Kundu
     - [Launching an EC2 instance](#launching-an-ec2-instance)
     - [EC2 Instance Types](#ec2-instance-types)
     - [Security Groups](#security-groups)
+    - [EC2 Instance Purchasing Options](#ec2-instance-purchasing-options)
+    - [EC2 - Private, Public, Elastic IPs](#ec2-privatepublic--elastic-ip)
+    - [EC2 - Placement Groups](#ec2-placement-groups)
+    - [EC2 - Elastic Network Interfaces (ENI)](#elastic-network-interfaces-eni)
+    - [EC2 - Hibernate](#ec2-hibernate)
 
 # Networking Terminologies:
 
