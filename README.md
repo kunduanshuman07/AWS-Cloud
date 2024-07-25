@@ -434,6 +434,8 @@ m: instance class
 |443|Access secured websites (HTTPS)|
 |3389|RDTP - Remote Desktop Protocol (Log into a Window instance)|
 
+**SSh command : ssh -i pemkeypath ec2-user@your_public_ip**
+
 ## EC2 Instance Purchasing Options
 
 1. On-Demand Instances : short workload, predictable pricing, pay be second
@@ -443,3 +445,40 @@ m: instance class
 5. Dedicated Hosts : You will be buy a entire server at AWS and place your ec2 instance on it.
 6. Dedicated Instances : You will buy a entire hardware at AWS and no body else will share that hardware with you.
 7. Capacity Reservations : You will reserve an entire capacity in a AZ for some duration.
+
+## EC2 Private/Public & Elastic IP
+
+1. Our ec2 instance has two IPs: Private and Public.
+2. Private IP is to communicate with other devices in the same network as the instance.
+3. Public IP is to communicate with the instance over the internet.
+4. If we stop & restart our ec2 machine, our public IP changes.
+5. If you can need to attach a fix IP to your instance , AWS provides you with 5 IP's called Elastic IPs.
+6. You can attach one Elastic IP to only one service at a time.
+
+## EC2 Placement Groups
+
+1. Cluster: All my instances are grouped in a single cluster in the same AZ to provide higher networking capabilities i.e very low latency.
+2. Spread: Each hardware has only one instance and can be placed in different AZ which reduces risk of simultaneous failure and provides high availability.
+3. Partition: Instances are placed in the different partitions with each partition having its own hardware but every partition is seperated from one another avoiding partition failure and every partition can contain as many ec2 instances.
+
+## Elastic Network Interfaces (ENI)
+
+These are Virtual Network Cards attached to your ec2 instance which provides access to the network for the ec2 instance.
+
+They contain:
+
+1. One primary Private IPv4, one or more secondary Private IPv4.
+2. One public IPv4.
+3. One Elastic IPv4 per private IPv4.
+4. One or more security groups.
+5. One MAC address.
+6. Bound to a specific AZ.
+
+## EC2 Hibernate
+
+1. When we stop our instance, RAM is preserved and restored when we start again.
+2. When we terminate our instance, RAM is destroyed.
+3. When we start our instance, OS boots starting up with reading the User data files and creates RAM for us.
+4. When we hibernate our instance, RAM state is preserved in EBS storage.
+5. When we remove our instance from hibernation, it finds the RAM file from the storage and helps in starting our instance very fast.
+6. We can keep our instance in hibernation for not more than 60 days.
